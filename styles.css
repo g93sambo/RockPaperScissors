@@ -1,0 +1,42 @@
+body{
+    background-color: red;
+    color: whitesmoke;
+    font-family: cursive;
+}
+
+#container{
+    /* width: 500px;
+    height: 700px;
+    
+    
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    text-align: center;
+    margin: auto;
+     padding: 10px;
+  
+}
+
+button{
+    width: 200px;
+    height: 75px;
+    border: 0;
+    background-color:rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    font-family: cursive;
+}
+button:hover{
+    background-color:rgb(97, 74, 74); 
+}
+#buttons{
+    list-style: none;
+    padding: 20px;
+}
+
+ul li{
+    margin: 10px;
+}

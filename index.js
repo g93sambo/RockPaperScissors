@@ -1,3 +1,9 @@
+
+const btn = document.querySelectorAll("button")
+const result = document.getElementById("result-heading")
+const score1 = document.getElementById("firstScore")
+const score2 = document.getElementById("secondScore")
+
 function getComputerChoice() {
     value = Math.floor(Math.random() * 3)
     if (value == 0) {
@@ -9,52 +15,50 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    choice = parseInt(prompt("Enter 1. for Rock \n Enter 2. for paper\n Enter 3. for scissors"))
-    if (choice == 1) {
-        return "rock"
-    } else if (choice == 2) {
-        return "paper"
-    } else if (choice == 3) {
-        return "scissors"
-    }
-}
-
 function playgame() {
     let humanScore = 0;
     let computerScore = 0;
-    function playRound(humanChoice, ComputerChoice) {
-        if (humanChoice == "rock" && ComputerChoice == "rock") {
+    btn.forEach((button) => {
+        button.addEventListener("click",() =>{
+            const humanChoice = button.textContent
+            const computerChoice = getComputerChoice()
+            playRound(humanChoice, computerChoice)
+        }
+        )
+    })
+    function humanWin(humanChoice, computerChoice){
+      result.textContent = `${humanChoice} wins ${computerChoice}`
+    }
+    function computerWin(humanChoice, computerChoice){
+        result.textContent = `${computerChoice} wins ${humanChoice} `
+    }
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice == "rock" && computerChoice == "rock") {
             console.log("There is no winner play the next round")
-        } else if (humanChoice == "rock" && ComputerChoice == "scissors") {
-            console.log("You win!Rock beats scissors ")
+        } else if (humanChoice == "rock" && computerChoice == "scissors") {
+            humanWin(humanChoice, computerChoice)
             humanScore++
-        } else if (humanChoice == "paper" && ComputerChoice == "rock") {
-            console.log("You win!paper beats rock ")
-            humanScore++
-        } else if (humanChoice == "scissors" && ComputerChoice == "paper") {
-            console.log("You win!scissors beats paper ")
+        } else if (humanChoice == "paper" && computerChoice == "rock") {
+            humanWin(humanChoice, computerChoice)
+           humanScore++
+        } else if (humanChoice == "scissors" && computerChoice == "paper") {
+            humanWin(humanChoice, computerChoice)
             humanScore++
         } else {
-            console.log("computer wins")
+            computerWin(humanChoice,computerChoice)
             computerScore++
         }
+        score1.textContent = humanScore
+        score2.textContent = computerScore
+        if (humanScore == 5 && computerScore < 5) {
+            result.textContent = "you win! yaayy"
          
-    }
+        } else if(computerScore == 5 && humanScore < 5) {
+            result.textContent = "The computer won booo"
+        }
     
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-   
-    if (humanScore > computerScore) {
-        console.log("you win! yaayy")
-    } else {
-        console.log("The computer won booo")
     }
-
-
+   
 
 }
 
